@@ -11,7 +11,9 @@ cache:
   directories:
     - $HOME/.m2
 
-before_install:
+script: "mvn clean install"
+
+before_deploy:
   - chmod +x mvnw
   - zip -r msyhu-naekaracubae-user-service *
   - mkdir -p deploy
@@ -26,6 +28,17 @@ deploy:
     skip_cleanup: true
     acl: private
     local_dir: deploy
+    wait-until-deployed: true
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: msyhu-naekaracubae-user-service-build
+    key: msyhu-naekaracubae-user-service.zip
+    bundle_type: zip
+    application: msyhu-naekaracubae-user-service
+    deployment_group: msyhu-naekaracubae-user-service-group
+    region: ap-northeast-2
     wait-until-deployed: true
 
 # MAVEN 프로젝트는 필요 없음
