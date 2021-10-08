@@ -13,6 +13,20 @@ cache:
 
 before_install:
   - chmod +x mvnw
+  - zip -r msyhu-naekaracubae-user-service *
+  - mkdir -p deploy
+  - mv msyhu-naekaracubae-user-service.zip deploy/msyhu-naekaracubae-user-service.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: msyhu-naekaracubae-user-service-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
 
 # MAVEN 프로젝트는 필요 없음
 #script: "./mvnw package"
