@@ -1,0 +1,10 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  config:
+    activate:
+      on-profile: dev
+
+server:
+  port: 8089

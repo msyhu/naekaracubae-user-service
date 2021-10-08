@@ -1,0 +1,27 @@
+### findall
+https://localhost:8089/users
+### findall-container
+http://localhost:8079/users
+### findall-vm
+http://naekaracubae.msyhu.com:8089/users
+
+### count
+https://localhost:8089/users/count
+### count vm
+http://naekaracubae.msyhu.com:8089/users/count
+
+### saveUser
+POST http://localhost:8089/users
+Content-Type: application/json
+
+{"name": "Mario", "email": "mario@msyhu.com"}
+
+### existsemail
+http://localhost:8089/users/exists/mario@msyhu.com
+
+### updateUser
+PUT http://localhost:8089/users/3
+Content-Type: application/json
+
+{"name": "Mario", "email": "mario@msyhu.com"}
+
