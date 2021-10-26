@@ -1,6 +1,6 @@
 package com.msyhu.naekaracubae.user.web;
 
-import com.msyhu.naekaracubae.user.models.User;
+import com.msyhu.naekaracubae.user.domain.user.User;
 import com.msyhu.naekaracubae.user.repositories.UserRepository;
 import com.msyhu.naekaracubae.user.service.UserService;
 import io.swagger.annotations.ApiOperation;

@@ -1,6 +1,6 @@
 package com.msyhu.naekaracubae.user;
 
-import com.msyhu.naekaracubae.user.models.User;
+import com.msyhu.naekaracubae.user.domain.user.User;
 import com.msyhu.naekaracubae.user.repositories.UserRepository;
 import org.junit.After;
 import org.junit.Test;
@@ -40,8 +40,7 @@ public class UserApiControllerTest {
         // given
         String email = "mario@msyhu.com";
         String name = "Mario";
-        Long id = Long.valueOf(1);
-        User user = new User(id, name, email);
+        User user = new User(name, email);
         User savedUser = userRepository.save(user);
 
         String url = "http://localhost:" + port + "/users/exists/mario@msyhu.com";
@@ -62,8 +61,7 @@ public class UserApiControllerTest {
         // given
         String email = "mario@msyhu.com";
         String name = "Mario";
-        Long id = Long.valueOf(1);
-        User user = new User(id, name, email);
+        User user = new User(name, email);
         User savedUser = userRepository.save(user);
 
         String url = "http://localhost:" + port + "/users";
