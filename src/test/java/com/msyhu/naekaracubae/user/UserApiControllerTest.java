@@ -1,7 +1,7 @@
 package com.msyhu.naekaracubae.user;
 
 import com.msyhu.naekaracubae.user.domain.user.User;
-import com.msyhu.naekaracubae.user.repositories.UserRepository;
+import com.msyhu.naekaracubae.user.domain.user.UserRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

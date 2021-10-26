@@ -1,6 +1,6 @@
 package com.msyhu.naekaracubae.user;
 
-import com.msyhu.naekaracubae.user.repositories.UserRepository;
+import com.msyhu.naekaracubae.user.domain.user.UserRepository;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

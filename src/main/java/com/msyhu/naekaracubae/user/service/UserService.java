@@ -1,6 +1,6 @@
 package com.msyhu.naekaracubae.user.service;
 
-import com.msyhu.naekaracubae.user.repositories.UserRepository;
+import com.msyhu.naekaracubae.user.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

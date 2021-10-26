@@ -1,4 +1,4 @@
-package com.msyhu.naekaracubae.user.repositories;
+package com.msyhu.naekaracubae.user.domain.user;
 
 import com.msyhu.naekaracubae.user.domain.user.User;
 import org.springframework.data.repository.CrudRepository;
