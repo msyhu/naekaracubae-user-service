@@ -3,6 +3,7 @@ package com.msyhu.naekaracubae.user.web;
 import com.msyhu.naekaracubae.user.domain.user.User;
 import com.msyhu.naekaracubae.user.domain.user.UserRepository;
 import com.msyhu.naekaracubae.user.service.UserService;
+import com.msyhu.naekaracubae.user.web.dto.UserDto;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +27,10 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public List<User> findAll() {
+    public List<UserDto> findAll() {
         log.info("Find All");
 
-        Iterable<User> all = userRepository.findAll();
+        Iterable<UserDto> all = userService.findAll();
         return StreamSupport.stream(all.spliterator(), false).collect(Collectors.toList());
     }
 
