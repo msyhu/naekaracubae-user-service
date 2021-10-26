@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.BDDAssertions.then;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -54,8 +55,30 @@ public class UserApiControllerTest {
         ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity(url, Boolean.class);
 
         // then
+        then(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        then(responseEntity.getBody()).isNotNull();
+        then(responseEntity.getBody()).isEqualTo(true);
+
+    }
+
+    @Test
+    public void 데이터가_잘_들어간다() throws Exception {
+
+        // given
+        String email = "mario@msyhu.com";
+        String name = "Mario";
+        Long id = Long.valueOf(1);
+        User user = new User(id, name, email);
+        User savedUser = userRepository.save(user);
+
+        String url = "http://localhost:" + port + "/users";
+
+        // when
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(url, user, User.class);
+
+        // then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isEqualTo(true);
+        assertThat(responseEntity.getBody().getName()).isEqualTo(user.getName());
 
     }
 }

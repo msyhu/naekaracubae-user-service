@@ -1,9 +1,11 @@
 ### findall
-https://localhost:8089/users
+http://localhost:8089/users
 ### findall-container
 http://localhost:8079/users
 ### findall-vm
 http://naekaracubae.msyhu.com:8089/users
+### findall-ec2
+http://3.38.35.79:8089/users
 
 ### count
 https://localhost:8089/users/count
@@ -15,6 +17,15 @@ POST http://localhost:8089/users
 Content-Type: application/json
 
 {"name": "Mario", "email": "mario@msyhu.com"}
+
+### saveUser-ec2
+POST http://3.38.35.79:8089/users
+Content-Type: application/json
+
+{"name": "Mario", "email": "mario@msyhu.com"}
+
+### delete
+DELETE http://localhost:8089/users/6
 
 ### existsemail
 http://localhost:8089/users/exists/mario@msyhu.com
