@@ -1,8 +1,8 @@
-package com.msyhu.naekaracubae.user.resources;
+package com.msyhu.naekaracubae.user.web;
 
 import com.msyhu.naekaracubae.user.models.User;
 import com.msyhu.naekaracubae.user.repositories.UserRepository;
-import com.msyhu.naekaracubae.user.services.UserService;
+import com.msyhu.naekaracubae.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
