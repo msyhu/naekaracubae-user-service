@@ -4,6 +4,7 @@ import com.msyhu.naekaracubae.user.models.User;
 import com.msyhu.naekaracubae.user.repositories.UserRepository;
 import com.msyhu.naekaracubae.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Slf4j
+@RequiredArgsConstructor
 @RestController
 @ApiOperation("상태별 Subscribers 조회")
 @RequestMapping("/users")
@@ -22,11 +24,6 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final UserService userService;
-
-    public UserController(UserRepository userRepository, UserService userService) {
-        this.userRepository = userRepository;
-        this.userService = userService;
-    }
 
     @GetMapping
     public List<User> findAll() {
