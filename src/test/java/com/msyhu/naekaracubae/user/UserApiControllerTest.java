@@ -74,4 +74,5 @@ public class UserApiControllerTest {
         assertThat(responseEntity.getBody().getName()).isEqualTo(user.getName());
 
     }
+
 }

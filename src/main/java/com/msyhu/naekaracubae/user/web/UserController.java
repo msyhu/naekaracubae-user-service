@@ -40,13 +40,10 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable("id") Long id) {
+    public UserDto findById(@PathVariable("id") Long id) {
         log.info("Find by Id " + id);
 
-        Optional<User> UserInfo = userRepository.findById(id);
-        User findUser = UserInfo.orElseThrow(() -> new NoSuchElementException("There is not any resource by id: " + id));
-
-        return findUser;
+        return userService.findById(id);
     }
 
     @PostMapping
