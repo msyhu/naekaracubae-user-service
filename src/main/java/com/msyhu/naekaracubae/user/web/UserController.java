@@ -30,8 +30,7 @@ public class UserController {
     public List<UserDto> findAll() {
         log.info("Find All");
 
-        Iterable<UserDto> all = userService.findAll();
-        return StreamSupport.stream(all.spliterator(), false).collect(Collectors.toList());
+        return userService.findAll();
     }
 
     @GetMapping("/count")
