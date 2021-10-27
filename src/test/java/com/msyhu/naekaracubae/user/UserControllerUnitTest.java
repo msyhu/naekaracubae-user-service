@@ -43,7 +43,7 @@ public class UserControllerUnitTest {
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
-    @DisplayName("데이터 저장 성공")
+    @DisplayName("구독자 추가")
     @Test
     public void saveSuccess() throws Exception {
 
@@ -68,7 +68,7 @@ public class UserControllerUnitTest {
         return userDto;
     }
 
-    @DisplayName("사용자 목록 조회")
+    @DisplayName("구독자 목록 전체 조회")
     @Test
     void getUserList() throws Exception {
         // given
@@ -79,7 +79,6 @@ public class UserControllerUnitTest {
 
         // then
         final MvcResult mvcResult = resultActions.andExpect(status().isOk()).andReturn();
-        String temp = mvcResult.getResponse().getContentAsString();
         final List<User> response = new Gson().fromJson(mvcResult.getResponse().getContentAsString(), List.class);
         assertThat(response.size()).isEqualTo(5);
     }
