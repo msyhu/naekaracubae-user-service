@@ -1,27 +1,68 @@
 package com.msyhu.naekaracubae.user;
 
+import com.google.gson.Gson;
 import com.msyhu.naekaracubae.user.domain.user.User;
 import com.msyhu.naekaracubae.user.service.UserService;
 import com.msyhu.naekaracubae.user.web.UserController;
-import org.junit.Test;
+import com.msyhu.naekaracubae.user.web.dto.UserDto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-@WebMvcTest(UserController.class)
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@ExtendWith(MockitoExtension.class)
 public class UserControllerUnitTest {
 
-    @Autowired
-    MockMvc mvc;
+    @InjectMocks
+    private UserController userController;
 
-    @MockBean
-    UserService userService;
+    @Mock
+    private UserService userService;
+
+    private MockMvc mockMvc;
+
+    @BeforeEach
+    public void init() {
+        System.out.println("before");
+        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+    }
 
     @Test
-    @DisplayName("findById Test")
-    void findByIdTest() throws Exception {
-        User user = User.builder().email("msyhu@korea.ac.kr").name("msyhu").build();
+    @DisplayName("데이터 저장 성공")
+    public void saveSuccess() throws Exception {
+
+        // given
+        final UserDto userDto = userDto();
+//        doReturn(false).when(userService).checkEmailDuplicate(userDto.getEmail());
+        doReturn(1L).when(userService).save(any(UserDto.class));
+
+        // when
+        final ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/users").contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(userDto)));
+
+        // then
+        final MvcResult mvcResult = resultActions.andExpect(status().isOk()).andReturn();
+        final String token = mvcResult.getResponse().getContentAsString();
+        assertThat(token).isNotNull();
+
+    }
+
+    private UserDto userDto() {
+
+        final UserDto userDto = new UserDto("test@test.test", "test");
+        return userDto;
     }
 }

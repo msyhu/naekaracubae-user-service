@@ -17,6 +17,10 @@ public class UserDto {
     @NotBlank
     private String name;
 
+    public UserDto() {
+
+    }
+
     public UserDto(User user) {
         this.email = user.getEmail();
         this.name = user.getName();
