@@ -29,9 +29,9 @@ public class UserController {
     }
 
     @GetMapping("/count")
-    public long count() {
+    public Long count() {
         log.info("count");
-        return userRepository.count();
+        return userService.count();
     }
 
     @GetMapping("/{id}")

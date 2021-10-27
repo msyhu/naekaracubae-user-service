@@ -56,4 +56,9 @@ public class UserService {
 
         return id;
     }
+
+    @Transactional(readOnly = true)
+    public Long count() {
+        return userRepository.count();
+    }
 }
