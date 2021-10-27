@@ -38,4 +38,12 @@ public class UserService {
     public Long save(UserDto requestDto) {
         return userRepository.save(requestDto.toEntity()).getId();
     }
+
+    @Transactional
+    public void delete (Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        userRepository.delete(user);
+    }
 }

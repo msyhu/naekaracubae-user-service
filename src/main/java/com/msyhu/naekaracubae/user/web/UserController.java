@@ -57,7 +57,7 @@ public class UserController {
     public void deleteById(@PathVariable("id") Long id) {
         log.info("Delete by Id " + id);
 
-        userRepository.deleteById(id);
+        userService.delete(id);
     }
 
     @PutMapping("/{id}")
