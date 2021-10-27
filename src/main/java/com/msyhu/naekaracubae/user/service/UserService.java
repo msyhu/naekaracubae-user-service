@@ -33,4 +33,9 @@ public class UserService {
 
         return new UserDto(entity);
     }
+
+    @Transactional
+    public Long save(UserDto requestDto) {
+        return userRepository.save(requestDto.toEntity()).getId();
+    }
 }

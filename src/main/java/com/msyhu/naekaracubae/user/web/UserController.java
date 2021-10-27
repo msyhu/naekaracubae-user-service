@@ -47,11 +47,10 @@ public class UserController {
     }
 
     @PostMapping
-    public User saveUser(@RequestBody User User) {
-        log.info("Save Subscribers " + User);
+    public Long save(@RequestBody UserDto userDto) {
+        log.info("Save Subscribers " + userDto);
 
-        User savedUser = userRepository.save(User);
-        return savedUser;
+        return userService.save(userDto);
     }
 
     @DeleteMapping("/{id}")

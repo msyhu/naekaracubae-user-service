@@ -22,6 +22,11 @@ public class UserDto {
         this.name = user.getName();
     }
 
+    public UserDto(String email, String name) {
+        this.email = email;
+        this.name = name;
+    }
+
     public User toEntity() {
         return new User(name, email);
     }

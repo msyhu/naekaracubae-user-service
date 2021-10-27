@@ -2,6 +2,7 @@ package com.msyhu.naekaracubae.user;
 
 import com.msyhu.naekaracubae.user.domain.user.User;
 import com.msyhu.naekaracubae.user.domain.user.UserRepository;
+import com.msyhu.naekaracubae.user.web.dto.UserDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,7 @@ public class UserApiControllerTest {
     }
 
     @Test
-    public void 해당_이메일이_존재한다() throws Exception {
+    public void 해당_이메일이_존재한다() {
 
         // given
         String email = "mario@msyhu.com";
@@ -56,7 +57,7 @@ public class UserApiControllerTest {
     }
 
     @Test
-    public void 데이터가_잘_들어간다() throws Exception {
+    public void 데이터가_잘_들어간다() {
 
         // given
         String email = "mario@msyhu.com";
