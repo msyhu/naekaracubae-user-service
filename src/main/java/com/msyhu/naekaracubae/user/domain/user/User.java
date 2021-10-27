@@ -1,6 +1,9 @@
 package com.msyhu.naekaracubae.user.domain.user;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -23,6 +26,11 @@ public class User {
 
     @Builder
     public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public void update(String name, String email) {
         this.name = name;
         this.email = email;
     }

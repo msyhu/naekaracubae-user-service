@@ -46,4 +46,14 @@ public class UserService {
 
         userRepository.delete(user);
     }
+
+    @Transactional
+    public Long update(Long id, UserDto userDto) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        user.update(userDto.getName(), userDto.getEmail());
+
+        return id;
+    }
 }

@@ -1,9 +1,7 @@
 package com.msyhu.naekaracubae.user.web.dto;
 
 import com.msyhu.naekaracubae.user.domain.user.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

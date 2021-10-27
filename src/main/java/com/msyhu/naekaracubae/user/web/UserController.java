@@ -1,6 +1,5 @@
 package com.msyhu.naekaracubae.user.web;
 
-import com.msyhu.naekaracubae.user.domain.user.User;
 import com.msyhu.naekaracubae.user.domain.user.UserRepository;
 import com.msyhu.naekaracubae.user.service.UserService;
 import com.msyhu.naekaracubae.user.web.dto.UserDto;
@@ -11,10 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -61,21 +56,10 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody User User) {
-        log.info("Update Subscribers id " + id + " Subscribers " + User);
+    public Long updateUser(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
+        log.info("Update Subscribers id " + id + " Subscribers " + userDto);
 
-        Optional<User> userInfo = userRepository.findById(id);
-        User findUser = userInfo.orElseThrow(() -> new NoSuchElementException("There is not any resource by id: " + id));
-
-        if (findUser.getEmail() != null) {
-            findUser.setEmail(User.getEmail());
-        }
-
-        if (findUser.getName() != null) {
-            findUser.setName(User.getName());
-        }
-
-        return userRepository.save(findUser);
+        return userService.update(id, userDto);
     }
 
     @GetMapping("/exists/{email}")
