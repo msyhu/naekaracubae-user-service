@@ -19,6 +19,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
@@ -37,12 +40,11 @@ public class UserControllerUnitTest {
 
     @BeforeEach
     public void init() {
-        System.out.println("before");
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
-    @Test
     @DisplayName("데이터 저장 성공")
+    @Test
     public void saveSuccess() throws Exception {
 
         // given
@@ -65,4 +67,29 @@ public class UserControllerUnitTest {
         final UserDto userDto = new UserDto("test@test.test", "test");
         return userDto;
     }
+
+    @DisplayName("사용자 목록 조회")
+    @Test
+    void getUserList() throws Exception {
+        // given
+        doReturn(userList()).when(userService).findAll();
+
+        // when
+        final ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/users"));
+
+        // then
+        final MvcResult mvcResult = resultActions.andExpect(status().isOk()).andReturn();
+        String temp = mvcResult.getResponse().getContentAsString();
+        final List<User> response = new Gson().fromJson(mvcResult.getResponse().getContentAsString(), List.class);
+        assertThat(response.size()).isEqualTo(5);
+    }
+
+    private List<User> userList() {
+        final List<User> userList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            userList.add(new User("test", "test@test.test"));
+        }
+        return userList;
+    }
+
 }
