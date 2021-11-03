@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.msyhu.naekaracubae</groupId>
-    <artifactId>user</artifactId>
+    <artifactId>naekaracubae-user-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>user</name>
-    <description>naekaracubae backend</description>
+    <description>naekaracubae-user-service</description>
     <properties>
         <java.version>1.8</java.version>
         <swagger.version>2.9.2</swagger.version>
