@@ -1,8 +1,6 @@
 name: Deploy
 
 on:
-  push:
-    branches: [ feature/cicd ]
   pull_request:
     branches: [ master ]
 
